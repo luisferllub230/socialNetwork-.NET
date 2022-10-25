@@ -1,0 +1,12 @@
+C:\Users\HP\source\repos\socialNetwork\Domain\bin\Debug\net6.0\socialNetwork.source.Core.Domain.deps.json
+C:\Users\HP\source\repos\socialNetwork\Domain\bin\Debug\net6.0\socialNetwork.source.Core.Domain.dll
+C:\Users\HP\source\repos\socialNetwork\Domain\bin\Debug\net6.0\socialNetwork.source.Core.Domain.pdb
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.AssemblyInfo.cs
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.dll
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\refint\socialNetwork.source.Core.Domain.dll
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\socialNetwork.source.Core.Domain.pdb
+C:\Users\HP\source\repos\socialNetwork\Domain\obj\Debug\net6.0\ref\socialNetwork.source.Core.Domain.dll
