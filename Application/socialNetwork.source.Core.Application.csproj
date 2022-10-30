@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="helpers\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

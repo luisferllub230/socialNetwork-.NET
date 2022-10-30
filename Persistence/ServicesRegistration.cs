@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using socialNetwork.source.Core.Persistence.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +10,30 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    internal class ServicesRegistration
+    public static class ServicesRegistration
     {
+        public static void AddPersistenceInfrastruture(this IServiceCollection services, IConfiguration configuration)
+        {
+            #region context
+            //for run database in memory 
+            if (configuration.GetValue<bool>("UseInMemoryDataBase"))
+            {
+                services.AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("applicationDB"));
+            }
+            else
+            {
+                services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(configuration.GetConnectionString("DefaultConection")
+                    , m => m.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+            }
+
+            #endregion
+
+            //#region repositories
+            //services.AddTransient(typeof(IGenericRepositories<>), typeof(GeneriesRepositories<>));
+            //services.AddTransient<IUsersRepositories, UsersRepositories>();
+            //services.AddTransient<ICategoriesRepositories, CategoriesRepositories>();
+            //services.AddTransient<IComercialRepositories, ComercialRepositories>();
+            //#endregion
+        }
     }
 }
