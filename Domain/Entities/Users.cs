@@ -16,6 +16,7 @@ namespace socialNetwork.source.Core.Domain.Entities
         public string? UserEmail { get; set; }
         public string? UserPhone { get; set; }
         public string? UserPassword { get; set; }
+        //public Boolean isActive { get; set; }
 
         public ICollection<Post> post { get; set; }
         public ICollection<Coments> Coments { get; set; }

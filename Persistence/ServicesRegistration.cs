@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using socialNetwork.source.Core.Application.Interfaces.repositoriesInterfaces;
 using socialNetwork.source.Core.Persistence.Context;
+using socialNetwork.source.Core.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +31,8 @@ namespace Persistence
             #endregion
 
             //#region repositories
-            //services.AddTransient(typeof(IGenericRepositories<>), typeof(GeneriesRepositories<>));
-            //services.AddTransient<IUsersRepositories, UsersRepositories>();
+            services.AddTransient(typeof(IGeneryRepositories<>), typeof(GenericRepository<>));
+            services.AddTransient<IUsersRepositories, UsersRepositories>();
             //services.AddTransient<ICategoriesRepositories, CategoriesRepositories>();
             //services.AddTransient<IComercialRepositories, ComercialRepositories>();
             //#endregion

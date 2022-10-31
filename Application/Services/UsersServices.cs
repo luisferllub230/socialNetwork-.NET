@@ -1,4 +1,6 @@
 ﻿using socialNetwork.source.Core.Application.Interfaces.repositoriesInterfaces;
+using socialNetwork.source.Core.Application.Interfaces.services;
+using socialNetwork.source.Core.Application.ViewModel.Users;
 using socialNetwork.source.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace socialNetwork.source.Core.Application.Services
 {
-    public class UsersServices : IUsersRepositories
+    public class UsersServices : IUsersServices
     {
 
         private IUsersRepositories _user;
@@ -18,35 +20,116 @@ namespace socialNetwork.source.Core.Application.Services
             _user = u;
         }
 
-
-        public Task<Users> add(Users entity)
+        public async Task<bool> confirmUsersNickName(SaveUsersViewModel suvm)
         {
-            throw new NotImplementedException();
+            if (await _user.getByString(suvm.UserNickName))
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public Task delete(Users entity)
+        public async Task<UsersViewModel> Logging(UsersLoggingViewModel suvm)
         {
-            throw new NotImplementedException();
+            Users us = await _user.logging(suvm);
+
+            if (us == null)
+            {
+                return null;
+            }
+
+            UsersViewModel user = new();
+            user.id = us.id;
+            user.UserNickName = us.UserNickName;
+            user.Name = us.Name;
+            user.LastName = us.LastName;
+            user.UserPhone = us.UserPhone;
+            user.UserEmail = us.UserEmail;
+            user.UserPassword = us.UserPassword;
+            user.Name = us.Name;
+
+            return user;
         }
 
-        public Task<List<Users>> getAll()
+        public async Task<SaveUsersViewModel> Add(SaveUsersViewModel suvm)
         {
-            throw new NotImplementedException();
+            Users user = new();
+            user.UserNickName = suvm.UserNickName;
+            user.Name = suvm.Name;
+            user.LastName = suvm.LastName;
+            user.UserPhone = suvm.UserPhone;
+            user.UserEmail = suvm.UserEmail;
+            user.UserPassword = suvm.UserPassword;
+            user.Name = suvm.Name;
+            user.UserPhoto = "sdasdas";
+
+            user = await _user.add(user);
+
+            SaveUsersViewModel sc = new SaveUsersViewModel();
+            sc.UserNickName = user.UserNickName;
+            sc.Name = user.Name;
+            sc.LastName = user.LastName;
+            sc.UserPhone = user.UserPhone;
+            sc.UserEmail = user.UserEmail;
+            sc.UserPassword = user.UserPassword;
+            sc.Name = user.Name;  
+
+            return sc;
         }
 
-        public Task<List<Users>> getAllByInclude(List<string> properties)
+        public async Task Update(SaveUsersViewModel suvm)
         {
-            throw new NotImplementedException();
+            Users user = await _user.getOne(suvm.id);
+            user.id = suvm.id;
+            user.UserNickName = suvm.UserNickName;
+            user.LastName = suvm.LastName;
+            user.UserPhone = suvm.UserPhone;
+            user.UserEmail = suvm.UserEmail;
+            user.UserPassword = suvm.UserPassword;
+            user.Name = suvm.Name;
+            await _user.update(user);
         }
 
-        public Task<Users> getOne(int id)
+        public async Task<List<UsersViewModel>> GetAll()
         {
-            throw new NotImplementedException();
+            var userList = await _user.getAllByInclude(new List<string> { "post" });
+
+            return userList.Select(c => new UsersViewModel
+            {
+                id = c.id,
+
+                UserNickName = c.UserNickName,
+                LastName = c.LastName,
+                UserPhone = c.UserPhone,
+                UserEmail = c.UserEmail,
+                UserPassword = c.UserPassword,
+                Name = c.Name,
+
+        }).ToList();
         }
 
-        public Task update(Users entity)
+        public async Task<SaveUsersViewModel> GetById(int id)
         {
-            throw new NotImplementedException();
+            var user = await _user.getOne(id);
+
+            SaveUsersViewModel suvm = new();
+            suvm.id = user.id;
+            suvm.UserNickName = user.UserNickName;
+            suvm.LastName = user.LastName;
+            suvm.UserPhone = user.UserPhone;
+            suvm.UserPassword = user.UserPassword;
+            suvm.UserEmail = user.UserEmail;
+            suvm.Name = user.Name;
+
+
+            return suvm;
+        }
+
+        public async Task Delete(SaveUsersViewModel suvm)
+        {
+            var user = await _user.getOne(suvm.id);
+            await _user.delete(user);
         }
     }
 }

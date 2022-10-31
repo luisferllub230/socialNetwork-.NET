@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace socialNetwork.source.Core.Application.Interfaces.services
 {
-    internal interface IUsersServices : IGeneryServices<UsersViewModel, SaveUsersViewModel>
+    public
+        interface IUsersServices : IGeneryServices<UsersViewModel, SaveUsersViewModel>
     {
+        Task<bool> confirmUsersNickName(SaveUsersViewModel suvm);
+        Task<UsersViewModel> Logging(UsersLoggingViewModel suvm);
     }
 }

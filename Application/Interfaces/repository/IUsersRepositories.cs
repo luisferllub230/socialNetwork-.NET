@@ -1,4 +1,5 @@
-﻿using socialNetwork.source.Core.Domain.Entities;
+﻿using socialNetwork.source.Core.Application.ViewModel.Users;
+using socialNetwork.source.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace socialNetwork.source.Core.Application.Interfaces.repositoriesInterface
 {
     public interface IUsersRepositories : IGeneryRepositories<Users>
     {
-
+        Task<bool> getByString(string name);
+        Task<Users> logging(UsersLoggingViewModel entity);
     }
 }

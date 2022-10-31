@@ -8,5 +8,14 @@ namespace socialNetwork.source.Core.Application.ViewModel.Users
 {
     public class UsersViewModel
     {
+        public int id { get; set; }
+        public string? UserNickName { get; set; }
+        public string? Name { get; set; }
+        public string? LastName { get; set; }
+        public string? UserPhoto { get; set; }
+        public string? UserEmail { get; set; }
+        public string? UserPhone { get; set; }
+        public string? UserPassword { get; set; }
+
     }
 }
