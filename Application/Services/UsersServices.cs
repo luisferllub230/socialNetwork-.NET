@@ -1,4 +1,5 @@
-﻿using socialNetwork.source.Core.Application.Interfaces.repositoriesInterfaces;
+﻿using AutoMapper;
+using socialNetwork.source.Core.Application.Interfaces.repositoriesInterfaces;
 using socialNetwork.source.Core.Application.Interfaces.services;
 using socialNetwork.source.Core.Application.ViewModel.Users;
 using socialNetwork.source.Core.Domain.Entities;
@@ -10,14 +11,16 @@ using System.Threading.Tasks;
 
 namespace socialNetwork.source.Core.Application.Services
 {
-    public class UsersServices : IUsersServices
+    public class UsersServices : GeneryServices<SaveUsersViewModel, UsersViewModel, Users>, IUsersServices
     {
 
         private IUsersRepositories _user;
+        private IMapper _mapper;
 
-        public UsersServices(IUsersRepositories u)
+        public UsersServices(IUsersRepositories u, IMapper mapper) : base(u, mapper)
         {
             _user = u;
+            _mapper = mapper;
         }
 
         public async Task<bool> confirmUsersNickName(SaveUsersViewModel suvm)
@@ -39,97 +42,8 @@ namespace socialNetwork.source.Core.Application.Services
                 return null;
             }
 
-            UsersViewModel user = new();
-            user.id = us.id;
-            user.UserNickName = us.UserNickName;
-            user.Name = us.Name;
-            user.LastName = us.LastName;
-            user.UserPhone = us.UserPhone;
-            user.UserEmail = us.UserEmail;
-            user.UserPassword = us.UserPassword;
-            user.Name = us.Name;
-
+            UsersViewModel user = _mapper.Map<UsersViewModel>(us);
             return user;
-        }
-
-        public async Task<SaveUsersViewModel> Add(SaveUsersViewModel suvm)
-        {
-            Users user = new();
-            user.UserNickName = suvm.UserNickName;
-            user.Name = suvm.Name;
-            user.LastName = suvm.LastName;
-            user.UserPhone = suvm.UserPhone;
-            user.UserEmail = suvm.UserEmail;
-            user.UserPassword = suvm.UserPassword;
-            user.Name = suvm.Name;
-            user.UserPhoto = "sdasdas";
-
-            user = await _user.add(user);
-
-            SaveUsersViewModel sc = new SaveUsersViewModel();
-            sc.UserNickName = user.UserNickName;
-            sc.Name = user.Name;
-            sc.LastName = user.LastName;
-            sc.UserPhone = user.UserPhone;
-            sc.UserEmail = user.UserEmail;
-            sc.UserPassword = user.UserPassword;
-            sc.Name = user.Name;  
-
-            return sc;
-        }
-
-        public async Task Update(SaveUsersViewModel suvm)
-        {
-            Users user = await _user.getOne(suvm.id);
-            user.id = suvm.id;
-            user.UserNickName = suvm.UserNickName;
-            user.LastName = suvm.LastName;
-            user.UserPhone = suvm.UserPhone;
-            user.UserEmail = suvm.UserEmail;
-            user.UserPassword = suvm.UserPassword;
-            user.Name = suvm.Name;
-            await _user.update(user);
-        }
-
-        public async Task<List<UsersViewModel>> GetAll()
-        {
-            var userList = await _user.getAllByInclude(new List<string> { "post" });
-
-            return userList.Select(c => new UsersViewModel
-            {
-                id = c.id,
-
-                UserNickName = c.UserNickName,
-                LastName = c.LastName,
-                UserPhone = c.UserPhone,
-                UserEmail = c.UserEmail,
-                UserPassword = c.UserPassword,
-                Name = c.Name,
-
-        }).ToList();
-        }
-
-        public async Task<SaveUsersViewModel> GetById(int id)
-        {
-            var user = await _user.getOne(id);
-
-            SaveUsersViewModel suvm = new();
-            suvm.id = user.id;
-            suvm.UserNickName = user.UserNickName;
-            suvm.LastName = user.LastName;
-            suvm.UserPhone = user.UserPhone;
-            suvm.UserPassword = user.UserPassword;
-            suvm.UserEmail = user.UserEmail;
-            suvm.Name = user.Name;
-
-
-            return suvm;
-        }
-
-        public async Task Delete(SaveUsersViewModel suvm)
-        {
-            var user = await _user.getOne(suvm.id);
-            await _user.delete(user);
         }
     }
 }

@@ -560,3 +560,5 @@ C:\Users\HP\source\repos\socialNetwork\socialNetwork\obj\Debug\net6.0\refint\soc
 C:\Users\HP\source\repos\socialNetwork\socialNetwork\obj\Debug\net6.0\socialNetwork.pdb
 C:\Users\HP\source\repos\socialNetwork\socialNetwork\obj\Debug\net6.0\socialNetwork.genruntimeconfig.cache
 C:\Users\HP\source\repos\socialNetwork\socialNetwork\obj\Debug\net6.0\ref\socialNetwork.dll
+C:\Users\HP\source\repos\socialNetwork\socialNetwork\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\HP\source\repos\socialNetwork\socialNetwork\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

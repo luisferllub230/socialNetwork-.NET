@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace socialNetwork.source.Core.Application.Interfaces.services
 {
-    public interface IGeneryServices<Entity, ViewModel> 
-        where Entity : class
+    public interface IGeneryServices<SaveViewModel, ViewModel, Model> 
+        where SaveViewModel : class
         where ViewModel : class
+        where Model : class
     {
-        Task<ViewModel> Add(ViewModel cavm);
-        Task Update(ViewModel cavm);
-        Task<List<Entity>> GetAll();
-        Task<ViewModel> GetById(int id);
-        Task Delete(ViewModel cavm);
+        Task<SaveViewModel> Add(SaveViewModel cavm);
+        Task Update(SaveViewModel cavm, int id);
+        Task<SaveViewModel> GetById(int id);
+        Task Delete(int id);
     }
 }

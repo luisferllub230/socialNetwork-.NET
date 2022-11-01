@@ -89,6 +89,9 @@ namespace socialNetwork.source.Core.Persistence.Context
             modelBuilder.Entity<Users>().Property(u => u.UserPhoto)
                 .IsRequired();
 
+            modelBuilder.Entity<Users>().Property(u => u.isActive)
+               .IsRequired();
+
             #endregion
 
             #region post

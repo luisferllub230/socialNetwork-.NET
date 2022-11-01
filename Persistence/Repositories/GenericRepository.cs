@@ -55,9 +55,10 @@ namespace socialNetwork.source.Core.Persistence.Repositories
             return await _contex.Set<Entity>().FindAsync(id);
         }
 
-        public virtual async Task update(Entity entity)
+        public virtual async Task update(Entity entity, int id)
         {
-            _contex.Entry(entity).State = EntityState.Modified;
+            var entt = await _contex.Set<Entity>().FindAsync(id);
+            _contex.Entry(entt).CurrentValues.SetValues(entity);
             await _contex.SaveChangesAsync();
         }
     }

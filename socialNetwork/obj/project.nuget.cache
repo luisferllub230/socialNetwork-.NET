@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "eUY2zsNZqFNmt+paLUqPGo02BSE60E0PflgsfncbUJzm4yaIZbXJdU2Of3CoeJl1DIvQ6AaSvN2FU5OQR7gGMA==",
+  "dgSpecHash": "pbLJzZsyhqzeKiEtp2frZgzghTM+fAFiSoHvr02FVPM30C9ACYJzpju/rY/+ytwyL7VU2JFuqZulN55UEwbvxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\source\\repos\\socialNetwork\\socialNetwork\\socialNetwork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
